@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/book', [BookController::class, 'index'])->name('book.index');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
