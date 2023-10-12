@@ -15,8 +15,8 @@ use App\Http\Controllers\BookController;
 */
 
 
-Route::get('/book', [BookController::class, 'index'])->name('book.index');
-Route::post('/book', [BookController::class, 'create'])->name('book.create');
+Route::get('/book', [BookController::class, 'index'])->name('book.index')->middleware('auth');
+Route::post('/book', [BookController::class, 'create'])->name('book.create')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

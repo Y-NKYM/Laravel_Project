@@ -9,6 +9,7 @@
                 <h1>持ってる</h1>
             @else
                 <h1>持ってない</h1>
+                <img src="{{ asset('images/no-image.png') }}" alt="">
             @endif
             <table class="table">
                 <tbody>
