@@ -17,9 +17,9 @@ use App\Http\Controllers\BookController;
 
 Route::get('/book', [BookController::class, 'index'])->name('book.index');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
