@@ -14,7 +14,38 @@ class BookController extends Controller
         return view('book.index', compact('books','user'));
     }
     
-    public function create(){
+    public function create(Request $request)
+    {
+        $image = $request->file('image');
+        if($request->hasFile('image')){
+            //storage < app < public内に画像を保存
+            //$pathにはパス："public/画像ファイル名"が入っている。
+            $path = \Storage::put('/public', $image);
+            //画像ファイル名のみ保存したいので、explode()で名前のみに変換している。
+            $path = explode('/', $path);
+        } else {
+            $path = null;
+        }
         
+        // バリデーション
+        $request-> validate([
+            'title' => 'required|max:20',
+            'body' => 'required',
+        ]);
+        
+        $book = new Book;
+        $book->user_id = Auth::user()->id;
+        $book->title = $request->input(["title"]);
+        $book->body= $request->input(["body"]);
+        $book->image = $path[1];
+        $book->save();
+        
+        return redirect()->route('book.index');
+    }
+    
+    public function show(){
+        $books = Book::all();
+        $user = Auth::user();
+        return view('book.show', compact('books','user'));
     }
 }
