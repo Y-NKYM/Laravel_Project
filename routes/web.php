@@ -16,6 +16,7 @@ use App\Http\Controllers\BookController;
 
 
 Route::get('/book', [BookController::class, 'index'])->name('book.index');
+Route::post('/book', [BookController::class, 'create'])->name('book.create');
 
 Route::get('/', function () {
     return view('welcome');
