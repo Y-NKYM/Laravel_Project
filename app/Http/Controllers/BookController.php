@@ -37,7 +37,9 @@ class BookController extends Controller
         $book->user_id = Auth::user()->id;
         $book->title = $request->input(["title"]);
         $book->body= $request->input(["body"]);
+        if($path){
         $book->image = $path[1];
+        }
         $book->save();
         
         return redirect()->route('book.index');
@@ -49,17 +51,44 @@ class BookController extends Controller
         return view('book.show', compact('book','user'));
     }
     
-    public function edit(){
-        $books = Book::all();
+    public function edit($id){
+        $book = Book::find($id);
         $user = Auth::user();
-        return view('book.edit', compact('books','user'));
+        return view('book.edit', compact('book','user'));
     }
     
-    public function update(){
+    public function update(Request $request, $id){
+        $image = $request->file('image');
+        if($request->hasFile('image')){
+            //storage < app < public内に画像を保存
+            //$pathにはパス："public/画像ファイル名"が入っている。
+            $path = \Storage::put('/public', $image);
+            //画像ファイル名のみ保存したいので、explode()で名前のみに変換している。
+            $path = explode('/', $path);
+        } else {
+            $path = null;
+        }
+
+        $request-> validate([
+            'title' => 'required|max:20',
+            'body' => 'required',
+        ]);
         
+        $book = Book::find($id);
+        $book->title = $request->input(["title"]);
+        $book->body= $request->input(["body"]);
+        if($path){
+            $book->image = $path[1];
+        }
+        
+        $book->update();
+        
+        return redirect()->route('book.show', $book->id);
     }
     
-    public function destroy(){
-        
+    public function destroy($id){
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->route('book.index');
     }
 }

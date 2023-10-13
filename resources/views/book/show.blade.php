@@ -4,10 +4,13 @@
 <div class="container px-5 px-sm-0">
     <div class="row">
         <div class="col-md-3">
-            @include('book.inputSection')
+            @include('book.userInfo')
+            <h2 class="mt-3">New Book</h2>
+            @include('book.newBook')
         </div>
         
         <div class="col-md-8 offset-md-1">
+            <h2>Book Info</h2>
             <div class="text-center mb-3">
                 @if(isset($book->image))
                     <img src="{{ '/storage/'. $book['image'] }}" alt="book_image" style="height:300px; width:auto;">
