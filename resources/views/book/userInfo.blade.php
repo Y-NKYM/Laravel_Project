@@ -16,3 +16,4 @@
         </tr>
     </tbody>
 </table>
+<a class="btn btn-secondary w-100" href="{{route('user.edit', $user->id)}}"><i class="fa-solid fa-user-gear"></i></a>

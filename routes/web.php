@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::get('/book/{id}', [BookController::class, 'show'])->name('book.show')->mi
 Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit')->middleware('auth');
 Route::patch('/book/{id}', [BookController::class, 'update'])->name('book.update')->middleware('auth');
 Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy')->middleware('auth');
+
+Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show')->middleware('auth');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
+Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

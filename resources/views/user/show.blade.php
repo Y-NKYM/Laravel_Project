@@ -10,23 +10,21 @@
         </div>
         
         <div class="col-md-8 offset-md-1">
-            <h2>Books</h2>
+            <h2>{{ $user->name }}'s Books</h2>
             <table class="table table-hover table-inverse">
                 <thead>
                     <tr>
                         <th></th>
                         <th>タイトル</th>
                         <th>内容</th>
-                        <th>投稿者</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($books as $book)
+                    @foreach($user->books as $book)
                         @include('book.bookTable')
                     @endforeach
                 </tbody>
             </table>
-            
         </div>
     </div>
 </div>
