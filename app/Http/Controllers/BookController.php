@@ -43,9 +43,23 @@ class BookController extends Controller
         return redirect()->route('book.index');
     }
     
-    public function show(){
+    public function show($id){
+        $book = Book::find($id);
+        $user = Auth::user();
+        return view('book.show', compact('book','user'));
+    }
+    
+    public function edit(){
         $books = Book::all();
         $user = Auth::user();
-        return view('book.show', compact('books','user'));
+        return view('book.edit', compact('books','user'));
+    }
+    
+    public function update(){
+        
+    }
+    
+    public function destroy(){
+        
     }
 }

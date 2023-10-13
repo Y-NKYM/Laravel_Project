@@ -18,6 +18,9 @@ use App\Http\Controllers\BookController;
 Route::get('/book', [BookController::class, 'index'])->name('book.index')->middleware('auth');
 Route::post('/book', [BookController::class, 'create'])->name('book.create')->middleware('auth');
 Route::get('/book/{id}', [BookController::class, 'show'])->name('book.show')->middleware('auth');
+Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit')->middleware('auth');
+Route::patch('/book/{id}', [BookController::class, 'update'])->name('book.update')->middleware('auth');
+Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');
