@@ -23,6 +23,7 @@ Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit'
 Route::patch('/book/{id}', [BookController::class, 'update'])->name('book.update')->middleware('auth');
 Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy')->middleware('auth');
 
+Route::get('/user', [UserController::class, 'index'])->name('user.index')->middleware('auth');
 Route::get('/user/{id}', [UserController::class, 'show'])->name('user.show')->middleware('auth');
 Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
 Route::patch('/user/{id}', [UserController::class, 'update'])->name('user.update')->middleware('auth');

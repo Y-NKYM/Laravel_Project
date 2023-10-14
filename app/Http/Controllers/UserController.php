@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index(){
+        $users = User::all()->except(Auth::id());
+        $user = Auth::user();
+        return view('user.index', compact('users', 'user'));
+    }
+    
     public function show($id){
         $user = User::find($id);
         return view('user.show', compact('user'));
