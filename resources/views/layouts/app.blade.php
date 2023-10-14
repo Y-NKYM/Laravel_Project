@@ -38,6 +38,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('book.index') }}">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">Users</a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
