@@ -10,7 +10,11 @@
         </div>
         
         <div class="col-md-8 offset-md-1">
-            <h2>{{ $user->name }}'s Books</h2>
+            @if(Auth::user() == $user)
+                <h2>My Books</h2>
+            @else
+                <h2>{{ $user->name }}'s Books</h2>
+            @endif
             <table class="table table-hover table-inverse">
                 <thead>
                     <tr>

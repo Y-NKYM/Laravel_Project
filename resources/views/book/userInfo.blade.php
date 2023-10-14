@@ -1,8 +1,8 @@
 <h2>User Info</h2>
 @if(isset($user->profile_image))
-    <img src="{{ 'storage/'. $user['portfolio_image'] }}" alt="portfolio_image" style="height:100px; width:auto;">
+    <img src="{{ '/storage/'. $user['profile_image'] }}" alt="profile_image" style="height:100px; width:auto;">
 @else
-    <img src="{{ asset('images/no-image.png') }}" alt="">
+    <img src="{{ asset('/images/no-image.png') }}" alt="">
 @endif
 <table class="table">
     <tbody>
@@ -11,8 +11,8 @@
             <th>{{ $user->name }}</th>
         </tr>
         <tr>
-            <th>メール</th>
-            <th>{{ $user->email }}</th>
+            <th>紹介文</th>
+            <th>{{ $user->introduction }}</th>
         </tr>
     </tbody>
 </table>
