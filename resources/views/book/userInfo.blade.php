@@ -1,5 +1,5 @@
 <h2>User Info</h2>
-@if(isset($user->profile_image))
+@if($user->profile_image != "" || $user->profile_image != null)
     <img src="{{ '/storage/'. $user['profile_image'] }}" alt="profile_image" style="height:100px; width:auto;">
 @else
     <img src="{{ asset('/images/no-image.png') }}" alt="">
