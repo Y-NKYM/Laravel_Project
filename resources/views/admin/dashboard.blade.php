@@ -2,8 +2,8 @@
 
 @section('content')
 
-@if (session('login_msg'))
-  <p>{{ session('login_msg') }}</p>
+@if (session('notice'))
+  <p>{{ session('notice') }}</p>
 @endif
 
 <div class="container">

@@ -16,10 +16,9 @@ class LoginController extends Controller
         $credentials = $request -> only(['email', 'password']);
         if(Auth::guard('admins') -> attempt($credentials)){
             $request->session()->regenerate();
-            return redirect() -> route('admin.dashboard')
-                -> with ([
-                    'notice' => 'ログインしました'
-                    ]);
+            return redirect() -> route('admin.dashboard')-> with ([
+                'notice' => 'ログインしました'
+            ]);
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -30,9 +29,8 @@ class LoginController extends Controller
         Auth::guard('admins')->logout();
     	$request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('admin.login')
-            -> with([
-                'notice' => 'ログアウトしました',
-                ]);
+        return redirect()->route('admin.login')-> with([
+            'notice' => 'ログアウトしました',
+        ]);
     }
 }
