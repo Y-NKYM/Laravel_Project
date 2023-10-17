@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -14,15 +15,15 @@ class LoginController extends Controller
     public function auth(Request $request){
         $credentials = $request -> only(['email', 'password']);
         if(Auth::guard('admins') -> attempt($credentials)){
+            $request->session()->regenerate();
             return redirect() -> route('admin.dashboard')
                 -> with ([
                     'notice' => 'ログインしました'
                     ]);
         }
-        return back()
-            -> withErrors([
-                'error' => 'ログインに失敗しました'
-                ]);
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
     
     public function logout(Request $request){

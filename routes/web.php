@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\HomeController;
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [LoginController::class, 'login'])->name('admin.login');
-    Route::post('/login', [LoginController::class, 'authenticate'])->name('admin.auth');
+    Route::post('/login', [LoginController::class, 'auth'])->name('admin.auth');
     Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
     
     Route::get('/', [HomeController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin.auth');
