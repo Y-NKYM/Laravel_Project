@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [LoginController::class, 'authenticate'])->name('admin.auth');
     Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
     
-    Route::get('/', [HomeController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/', [HomeController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin.auth');
 });
 
 Route::get('/book', [BookController::class, 'index'])->name('book.index')->middleware('auth');

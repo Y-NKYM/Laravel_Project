@@ -29,7 +29,7 @@ class LoginController extends Controller
         Auth::guard('admins')->logout();
     	$request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('admin.login.index')
+        return redirect()->route('admin.login')
             -> with([
                 'notice' => 'ログアウトしました',
                 ]);
