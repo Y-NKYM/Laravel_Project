@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::prefix('admin')->group(function () {
     
     Route::get('/', [HomeController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin.auth');
 });
+
+Route::get('/card', [CardController::class, 'index'])->name('card.index');
 
 Route::get('/book', [BookController::class, 'index'])->name('book.index')->middleware('auth');
 Route::post('/book', [BookController::class, 'create'])->name('book.create')->middleware('auth');
